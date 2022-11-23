@@ -90,7 +90,6 @@ public class ClientController {
 		clientService.delete(cin);
 		return "redirect:/clients/all";
 	}
-	
 
 	@PostMapping(value = "/update")
 	public String update(@ModelAttribute Client client) {
