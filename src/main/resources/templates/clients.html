@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org" th:replace="template.html :: layout(~{::title}, ~{::main})">
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+</head>
+<body>
+<main class="row w-100 mt-2">
+    <div class="col-lg-6 col-md-12">
+        <h1 class="h1 text-center">Add new Client</h1>
+        <form th:action="@{/clients/save}" method="POST" class="mx-auto p-2">
+            <div class="form-group row mb-2">
+                <label for="cin" class="col-lg-4 col-md-6 col-form-label">Cin</label>
+                <div class="col-lg-8 col-md-6">
+                    <input type="text" class="form-control" id="cin" name="cin" placeholder="cin">
+                </div>
+            </div>
+            <div class="form-group  row mb-2">
+                <label for="nom" class="col-lg-4 col-md-6 col-form-label">nom</label>
+                <div class="col-lg-8 col-md-6">
+                    <input type="text" class="form-control" id="nom" name="nom" placeholder="nom">
+                </div>
+            </div>
+
+            <div class="form-group row mb-2">
+                <label for="prenom" class="col-lg-4 col-md-6 col-form-label">Prenom</label>
+                <div class="col-lg-8 col-md-6">
+                    <input type="text" class="form-control" id="prenom" name="prenom" placeholder="prenom">
+                </div>
+            </div>
+
+            <div class="form-group row mb-2">
+                <label for="addresse" class="col-lg-4 col-md-6 col-form-label">Addresse</label>
+                <div class="col-lg-8 col-md-6">
+                    <input type="text" class="form-control" id="addresse" name="addresse" placeholder="addresse">
+                </div>
+            </div>
+            <div class="d-flex justify-content-end gx-5 w-100">
+                <button class="btn btn-dark" style="margin-right: 2%">Annuler</button>
+                <button class="btn btn-success">Edit Client</button>
+            </div>
+        </form>
+    </div>
+    <div class="col-lg-6 col-md-12 p-2">
+        <h1 class="h1 text-center">List of clients</h1>
+        <form class="d-flex justify-content-end" th:action="@{/clients/all}" method="GET">
+            <div class="row">
+                <div class="col">
+                    <input type="text" class="form-control" id="nomSearch" name="nom">
+                </div>
+                <div class="col">
+                    <button type="submit" class="btn btn-primary">search</button>
+                </div>
+            </div>
+        </form>
+        <table class="table table-striped table-hover table-dark mt-5">
+            <thead>
+            <tr>
+                <th scope="col" class="text-center">cin</th>
+                <th scope="col" class="text-center">Nom </th>
+                <th scope="col" class="text-center">Prenom</th>
+                <th scope="col" class="text-center">Addresse</th>
+                <th scope="col" class="text-center"> nombre de comptes</th>
+                <!--  <th>Delete</th>-->
+                <th scope="col" class="bg-dark text-center">actions</th>
+            </tr>
+            </thead>
+            <tbody class="table-light">
+            <tr th:id="${client.cin}" th:each="client: ${clients}">
+                <td class="text-center" th:text="${client.cin}" />
+                <td class="text-center" th:text="${client.nom}" />
+                <td class="text-center" th:text="${client.prenom}" />
+                <td class="text-center" th:text="${client.addresse}"/>
+                <td class="text-center" th:text="${client.comptes.size()}"/>
+                <td class="d-flex justify-content-center">
+                    <a class="btn btn-warning ml-5" style="margin-right: 2%" th:href="'/clients/edit/'+${client.cin}">edit</a>
+                    <button class="btn btn-danger" th:attr="onclick='deleteClient('+ ${client.cin} +')'">
+                        delete
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
+</body>
+</html>

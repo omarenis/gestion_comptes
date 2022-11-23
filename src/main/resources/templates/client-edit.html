@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org" th:replace="template.html :: layout(~{::title}, ~{::main})">
+<head>
+<meta charset="utf-8">
+<title>edit client</title>
+</head>
+<body>
+<main>
+    <h1 class="h1 text-center text-danger mt-5">Edit client</h1>
+    <div class="container mx-auto" id="data">
+        <form class="mx-auto row" method="post" th:action="@{/clients/edit}" th:object="${client}">
+            <div class="form-group row mb-2">
+                <label for="cin" class="col-lg-4 col-md-6 col-form-label">Cin</label>
+                <div class="col-lg-8 col-md-6">
+                    <input type="text" class="form-control" id="cin" name="cin" th:value="${client.cin}" readonly th:field="*{cin}">
+                </div>
+            </div>
+            <div class="form-group  row mb-2">
+                <label for="nom" class="col-lg-4 col-md-6 col-form-label">nom</label>
+                <div class="col-lg-8 col-md-6">
+                    <input type="text" class="form-control" id="nom" name="nom" placeholder="nom" th:value="${client.nom}" th:field="*{nom}">
+                </div>
+            </div>
+
+            <div class="form-group row mb-2">
+                <label for="prenom" class="col-lg-4 col-md-6 col-form-label">Prenom</label>
+                <div class="col-lg-8 col-md-6">
+                    <input type="text" class="form-control" id="prenom" name="prenom" placeholder="prenom" th:value="${client.prenom}" th:field="*{prenom}">
+                </div>
+            </div>
+
+            <div class="form-group row mb-2">
+                <label for="addresse" class="col-lg-4 col-md-6 col-form-label">Addresse</label>
+                <div class="col-lg-8 col-md-6">
+                    <input type="text" class="form-control" id="addresse" name="addresse" placeholder="addresse" th:value="${client.addresse}" th:field="*{addresse}">
+                </div>
+            </div>
+            <div class="d-flex justify-content-end w-75">
+                <button class="btn btn-dark">Annuler</button>
+                <button class="btn btn-success">Edit Client</button>
+            </div>
+        </form>
+    </div>
+</main>
+</body>
+</html>

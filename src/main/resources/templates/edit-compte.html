@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org" th:replace="template.html :: layout(~{::title}, ~{::main})">
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>edit Compte</h1>
+	<form th:object="${compte}"  th:action="@{/comptes/update}" method="post">
+		<table>
+			<tr>
+				<td><label text="Rib"> </label></td>
+				<td><input type="number" th:field="*{rib}" readonly th:value="${compte.rib}" /></td>
+			</tr>
+			<tr>
+				<td><label text="cin de client"> </label></td>
+				<td><input type="text" th:field="*{clientCin}" readonly class="form-control-plaintext" th:value="${compte.clientCin}"/></td>
+			</tr>
+			<tr>
+				<td><label text="solde"> </label></td>
+				<td><input type="text" th:field="*{solde}" /></td>
+			</tr>
+			<tr>
+				<td><input type="submit" value="Update" /></td>
+			</tr>
+		</table>
+	</form>
+	<main>
+		<h1 class="h1 text-center text-danger mt-5">Edit Compte</h1>
+		<div class="container mx-auto" id="data">
+			<form class="mx-auto row" th:object="${compte}"  th:action="@{/comptes/update}" method="post">
+				<div class="form-group row mb-2">
+					<label for="cin" class="col-lg-4 col-md-6 col-form-label">Rib de compte</label>
+					<div class="col-lg-8 col-md-6">
+						<input type="number" th:field="*{rib}" readonly th:value="${compte.rib}" class="form-control" id="cin">
+					</div>
+				</div>
+				<div class="form-group  row mb-2">
+					<label for="clientCin" class="col-lg-4 col-md-6 col-form-label">Cin de client</label>
+					<div class="col-lg-8 col-md-6">
+						<input type="text" th:field="*{clientCin}" readonly class="form-control" id="clientCin" th:value="${compte.clientCin}">
+					</div>
+				</div>
+				<div class="form-group  row mb-2">
+					<label for="solde" class="col-lg-4 col-md-6 col-form-label">solde</label>
+					<div class="col-lg-8 col-md-6">
+						<input type="text" th:field="*{solde}" name="solde" class="form-control" id="solde" th:value="${compte.solde}">
+					</div>
+				</div>
+				<div class="d-flex justify-content-end w-75">
+					<button class="btn btn-dark">Annuler</button>
+					<button class="btn btn-success">Edit Compte</button>
+				</div>
+			</form>
+		</div>
+	</main>
+</body>
+</html>
